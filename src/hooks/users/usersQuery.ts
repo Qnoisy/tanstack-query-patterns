@@ -1,18 +1,17 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { usersApi } from "../../api/usersApi";
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { usersApi } from '../../api/usersApi';
 
-export const USERS_QUERY_KEY = ["users"];
-
+export const USER_QUERY_KEY = ['users'];
 export function useUsersQuery({
-  page = 1,
-  limit = 5,
+	page = 1,
+	limit = 10,
 }: {
-  page?: number;
-  limit?: number;
+	page?: number;
+	limit?: number;
 }) {
-  return useQuery({
-    queryKey: [...USERS_QUERY_KEY, page],
-    queryFn: () => usersApi.getUsers({ page, limit }),
-    placeholderData: keepPreviousData,
-  });
+	return useQuery({
+		queryKey: [...USER_QUERY_KEY, page],
+		queryFn: () => usersApi.getUsers({ page, limit }),
+		placeholderData: keepPreviousData,
+	});
 }
